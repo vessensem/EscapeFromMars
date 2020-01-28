@@ -2,6 +2,7 @@ using EscapeFromMars.Controls;
 using UnityEngine;
 using Zenject;
 
+//Test Inject
 namespace EscapeFromMars.Data
 {
     public class PersonInstaller : MonoInstaller
