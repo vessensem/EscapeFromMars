@@ -2762,7 +2762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6835edc7dffebd4b9ca4b8e47214ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterParametersData: {fileID: 11400000, guid: 79262d29f9cbc01459a9e97184e0123d,
+  "\u0421haracterParametersData": {fileID: 11400000, guid: 79262d29f9cbc01459a9e97184e0123d,
     type: 2}
 --- !u!114 &7986799096559999255
 MonoBehaviour:

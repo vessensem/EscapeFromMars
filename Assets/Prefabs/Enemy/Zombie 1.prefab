@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6835edc7dffebd4b9ca4b8e47214ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterParametersData: {fileID: 11400000, guid: 99af60fea23d0724a90af7caba648c99,
+  "\u0421haracterParametersData": {fileID: 11400000, guid: 99af60fea23d0724a90af7caba648c99,
     type: 2}
 --- !u!114 &4179837672234471979
 MonoBehaviour:
@@ -349,16 +349,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 9e72a35bb77407a4cb85f9e76748727c,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 494ebfedfb0675540b8eeacf640ca620, type: 2}
-    - target: {fileID: -6057140222963153312, guid: 9e72a35bb77407a4cb85f9e76748727c,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9e72a35bb77407a4cb85f9e76748727c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -412,6 +402,16 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9e72a35bb77407a4cb85f9e76748727c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 9e72a35bb77407a4cb85f9e76748727c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 494ebfedfb0675540b8eeacf640ca620, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 9e72a35bb77407a4cb85f9e76748727c,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

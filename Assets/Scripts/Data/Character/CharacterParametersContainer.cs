@@ -6,19 +6,19 @@ namespace EscapeFromMars.Data
 {
     public class CharacterParametersContainer : MonoBehaviour
     {
-        [SerializeField] private CharacterParametersData characterParametersData = null;
+        public CharacterParametersData СharacterParametersData = null;
 
-        public bool IsDead { get { return characterParametersData.CharacterParameters.CurrentHealth <= 0; } }
+        public bool IsDead { get { return СharacterParametersData.CharacterParameters.CurrentHealth <= 0; } }
 
         void Awake()
         {
-            characterParametersData = Instantiate(characterParametersData);
-            characterParametersData.CharacterParameters.FirstInit();
+            СharacterParametersData = Instantiate(СharacterParametersData);
+            СharacterParametersData.CharacterParameters.FirstInit();
         }
 
         public void ChangeCurrentHealth(float value)
         {
-            characterParametersData.CharacterParameters.CurrentHealth += value;
+            СharacterParametersData.CharacterParameters.CurrentHealth += value;
         }
     }
 }
