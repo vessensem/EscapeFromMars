@@ -19,13 +19,7 @@ namespace EscapeFromMars.Damage
             _characterParametersContainer = characterParametersContainer;
             _thisCollider = collider;
         }
-
-        void Awake()
-        {
-            _characterParametersContainer = GetComponent<CharacterParametersContainer>();
-            _thisCollider = GetComponent<Collider>();
-        }
-
+               
         public void ApplyDamage(float damage)
         {
             if (_characterParametersContainer.IsDead)
