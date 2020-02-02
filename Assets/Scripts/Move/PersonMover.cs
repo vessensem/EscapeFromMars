@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 using Zenject;
 
 namespace EscapeFromMars
@@ -17,9 +14,9 @@ namespace EscapeFromMars
             public float Gravity = 20.0f;
 
             private EventManager _eventManager;
-            private CharacterController _characterController;
-            private Vector3 _moveDirection = Vector3.zero;
-            private Vector2 _controlVector;
+            protected CharacterController _characterController;
+            protected Vector3 _moveDirection = Vector3.zero;
+            protected Vector2 _controlVector;
             private bool canMove = true;
 
             public Vector3 MoveDirectionSpeed { get => new Vector3(_moveDirection.x * Speed, _moveDirection.y, 0); }
@@ -32,11 +29,6 @@ namespace EscapeFromMars
             {
                 _eventManager = eventManager;
                 _characterController = characterController;
-            }
-
-            void Awake()
-            {
-                _characterController = GetComponent<CharacterController>();
             }
 
             void Start()
@@ -57,25 +49,6 @@ namespace EscapeFromMars
             void CheckSpeed()
             {
                 _moveDirection.x = Mathf.Lerp(_moveDirection.x, _controlVector.x, Time.deltaTime * Acceleration);
-            }
-
-            public void Move(InputAction.CallbackContext context)
-            {
-                _controlVector = context.action.ReadValue<Vector2>();
-
-                if (_controlVector.x < 0)
-                    transform.eulerAngles = new Vector3(0, 180, 0);
-                else
-                if (_controlVector.x > 0)
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-            }
-
-            public void Jump(InputAction.CallbackContext context)
-            {
-                if (_characterController.isGrounded && CanMove)
-                {
-                    _moveDirection.y = JumpSpeed;
-                }
             }
 
             void Die(GameObject character)
