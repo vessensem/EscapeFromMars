@@ -5,18 +5,12 @@ namespace EscapeFromMars.Controls
 {
     public class PlayerMover : PersonMover
     {
-        public void Move(InputAction.CallbackContext context)
+        public void PlayerMove(InputAction.CallbackContext context)
         {
-            _controlVector = context.action.ReadValue<Vector2>();
-
-            if (_controlVector.x < 0)
-                transform.eulerAngles = new Vector3(0, 180, 0);
-            else
-            if (_controlVector.x > 0)
-                transform.eulerAngles = new Vector3(0, 0, 0);
+            Move(context.action.ReadValue<Vector2>());
         }
 
-        public void Jump(InputAction.CallbackContext context)
+        public void PlayerJump(InputAction.CallbackContext context)
         {
             if (_characterController.isGrounded && CanMove)
             {

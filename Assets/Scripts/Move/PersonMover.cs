@@ -14,10 +14,11 @@ namespace EscapeFromMars
             public float Gravity = 20.0f;
 
             private EventManager _eventManager;
+            private bool canMove = true;
+
             protected CharacterController _characterController;
             protected Vector3 _moveDirection = Vector3.zero;
             protected Vector2 _controlVector;
-            private bool canMove = true;
 
             public Vector3 MoveDirectionSpeed { get => new Vector3(_moveDirection.x * Speed, _moveDirection.y, 0); }
             public float NormalizedSpeed { get => Mathf.Abs(MoveDirectionSpeed.x) / Speed; }
@@ -49,6 +50,21 @@ namespace EscapeFromMars
             void CheckSpeed()
             {
                 _moveDirection.x = Mathf.Lerp(_moveDirection.x, _controlVector.x, Time.deltaTime * Acceleration);
+            }
+
+            protected void Move(Vector3 controlVector)
+            {
+                _controlVector = controlVector;
+                SetRotation();
+            }
+
+            void SetRotation()
+            {
+                if (_controlVector.x < 0)
+                    transform.eulerAngles = new Vector3(0, 180, 0);
+                else
+                  if (_controlVector.x > 0)
+                    transform.eulerAngles = new Vector3(0, 0, 0);
             }
 
             void Die(GameObject character)
