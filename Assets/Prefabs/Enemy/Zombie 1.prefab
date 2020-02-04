@@ -48,6 +48,7 @@ MonoBehaviour:
   CharacterController: {fileID: 4179837672234471989}
   CharacterParametersContainer: {fileID: 4179837672234471976}
   Collider: {fileID: 4179837672234471989}
+  AudioSource: {fileID: 2405092812153103039}
 --- !u!1 &2626922165587001159
 GameObject:
   m_ObjectHideFlags: 0

@@ -91,8 +91,8 @@ MonoBehaviour:
   EventName: Attack_Punch
   EventSignalTime: 0
   EventSignal: 2
-  StartEvent: 0
-  EndEvent: 1
+  StartEventSignal: 0
+  EndEventSignal: 1
 --- !u!1101 &-6153826858880944038
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -130,8 +130,8 @@ MonoBehaviour:
   EventName: Attack_Punch
   EventSignalTime: 0
   EventSignal: 2
-  StartEvent: 0
-  EndEvent: 1
+  StartEventSignal: 0
+  EndEventSignal: 1
 --- !u!1102 &-5710688679187422770
 AnimatorState:
   serializedVersion: 5
@@ -197,7 +197,7 @@ AnimatorStateMachine:
     m_Position: {x: 340, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8220917700248002916}
-    m_Position: {x: 610, y: -210, z: 0}
+    m_Position: {x: 610, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2217934758308827840}
     m_Position: {x: 340, y: -60, z: 0}
@@ -226,8 +226,8 @@ MonoBehaviour:
   EventName: Attack_Punch
   EventSignalTime: 0
   EventSignal: 2
-  StartEvent: 0
-  EndEvent: 1
+  StartEventSignal: 0
+  EndEventSignal: 1
 --- !u!1102 &-4133486708676665874
 AnimatorState:
   serializedVersion: 5
@@ -489,8 +489,8 @@ MonoBehaviour:
   EventName: Attack_Punch
   EventSignalTime: 0
   EventSignal: 2
-  StartEvent: 5
-  EndEvent: 1
+  StartEventSignal: 0
+  EndEventSignal: 1
 --- !u!1102 &496999784416795310
 AnimatorState:
   serializedVersion: 5
@@ -534,8 +534,8 @@ MonoBehaviour:
   EventName: Attack_Punch
   EventSignalTime: 0
   EventSignal: 2
-  StartEvent: 0
-  EndEvent: 5
+  StartEventSignal: 0
+  EndEventSignal: 1
 --- !u!1101 &1694973524113251638
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -753,8 +753,8 @@ MonoBehaviour:
   EventName: Attack_Punch
   EventSignalTime: 0
   EventSignal: 2
-  StartEvent: 0
-  EndEvent: 1
+  StartEventSignal: 0
+  EndEventSignal: 1
 --- !u!1102 &6628751611575640121
 AnimatorState:
   serializedVersion: 5

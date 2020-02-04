@@ -12,6 +12,7 @@ namespace EscapeFromMars.Data
         public CharacterController CharacterController;
         public CharacterParametersContainer CharacterParametersContainer;
         public Collider Collider;
+        public AudioSource AudioSource;
 
         public override void InstallBindings()
         {
@@ -20,6 +21,7 @@ namespace EscapeFromMars.Data
             Container.BindInstance(CharacterController).AsSingle();
             Container.BindInstance(CharacterParametersContainer).AsSingle();
             Container.BindInstance(Collider).AsSingle();
+            Container.BindInstance(AudioSource).AsSingle();
         }
     }
 }

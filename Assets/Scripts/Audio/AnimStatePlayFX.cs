@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class AnimStatePlayFX : StateMachineBehaviour
 {
@@ -11,12 +12,13 @@ public class AnimStatePlayFX : StateMachineBehaviour
 
     private bool _didEvent = false;
     private float _normalizedTime;
+    private AudioSource _audioSource;
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    // override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //     
-    // }
+    [Inject]
+    public void Construct(AudioSource audioSource)
+    {
+        _audioSource = audioSource;
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,7 +27,8 @@ public class AnimStatePlayFX : StateMachineBehaviour
         if (_normalizedTime >= eventTime && !_didEvent)
         {
             _didEvent = true;
-            animator.GetComponentInChildren<AudioSource>().PlayOneShot(audioClip);
+            _audioSource.PlayOneShot(audioClip);
+            //animator.GetComponentInChildren<AudioSource>().PlayOneShot(audioClip);
         }
     }
 
@@ -35,15 +38,5 @@ public class AnimStatePlayFX : StateMachineBehaviour
         _didEvent = false;
     }
 
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
 
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }
