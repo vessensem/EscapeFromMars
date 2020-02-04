@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 public class AnimStatePlayFX : StateMachineBehaviour
 {
-    [Tooltip("0-1 Время, когда проиграется звук"), Range(0, 1)]
-    public float eventTime;
-    public AudioClip audioClip;
+    [SerializeField, Tooltip("0-1 Время, когда проиграется звук"), Range(0, 1)]
+    private float _eventTime = default;
+    [SerializeField]
+    private AudioClip _audioClip = default;
 
     private bool _didEvent = false;
     private float _normalizedTime;
@@ -24,11 +22,10 @@ public class AnimStatePlayFX : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _normalizedTime = Mathf.Repeat(stateInfo.normalizedTime, 1);
-        if (_normalizedTime >= eventTime && !_didEvent)
+        if (_normalizedTime >= _eventTime && !_didEvent)
         {
             _didEvent = true;
-            _audioSource.PlayOneShot(audioClip);
-            //animator.GetComponentInChildren<AudioSource>().PlayOneShot(audioClip);
+            _audioSource.PlayOneShot(_audioClip);
         }
     }
 

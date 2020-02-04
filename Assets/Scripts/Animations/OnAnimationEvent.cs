@@ -7,14 +7,16 @@ namespace EscapeFromMars.Animations
 {
     public class OnAnimationEvent : StateMachineBehaviour
     {
-        public string EventName;
-        [Tooltip("0-1 Время эвента")]
-        [Range(0, 1)]
-        public float EventSignalTime;
-
-        public EVENT_TYPE EventSignal = EVENT_TYPE.EVENT_PLAYER_ANIMATION;
-        public EVENT_TYPE StartEventSignal = EVENT_TYPE.START_PLAYER_ANIMATION;
-        public EVENT_TYPE EndEventSignal = EVENT_TYPE.END_PLAYER_ANIMATION;
+        [SerializeField]
+        private string EventName = default;
+        [SerializeField, Tooltip("0-1 Время эвента"), Range(0, 1)]
+        private float EventSignalTime = default;
+        [SerializeField]
+        private EVENT_TYPE EventSignal = EVENT_TYPE.EVENT_PLAYER_ANIMATION;
+        [SerializeField]
+        private EVENT_TYPE StartEventSignal = EVENT_TYPE.START_PLAYER_ANIMATION;
+        [SerializeField]
+        private EVENT_TYPE EndEventSignal = EVENT_TYPE.END_PLAYER_ANIMATION;
 
         private EventManager _eventManager;
         private bool _didEvent = false;

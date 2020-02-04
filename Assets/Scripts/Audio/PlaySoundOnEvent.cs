@@ -7,8 +7,10 @@ namespace EscapeFromMars.Audio
     [RequireComponent(typeof(AudioSource))]
     public class PlaySoundOnEvent : MonoBehaviour, IListener
     {
-        [SerializeField] protected EVENT_TYPE eventType = EVENT_TYPE.EMPTY_EVENT;
-        [SerializeField] protected AudioClip audioClip = null;
+        [SerializeField]
+        protected EVENT_TYPE eventType = EVENT_TYPE.EMPTY_EVENT;
+        [SerializeField]
+        protected AudioClip audioClip = null;
 
         protected AudioSource audioSource;
         protected GameObject parentGameObject;

@@ -7,13 +7,14 @@ namespace EscapeFromMars.Damage
     [RequireComponent(typeof(AudioSource))]
     public class Damager : MonoBehaviour
     {
-        [SerializeField] private float damage = 1;
+        [SerializeField]
+        private float _damage = 1;
 
-        private AudioSource audioSource;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
-            audioSource = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -22,8 +23,8 @@ namespace EscapeFromMars.Damage
             var damagable = other.gameObject.GetComponent<IDamagable>();
             if (damagable != null)
             {
-                damagable.ApplyDamage(damage);
-                audioSource.Play();
+                damagable.ApplyDamage(_damage);
+                _audioSource.Play();
             }
         }
 
