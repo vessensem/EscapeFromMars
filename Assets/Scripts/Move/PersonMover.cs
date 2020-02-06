@@ -11,12 +11,18 @@ namespace EscapeFromMars
             [SerializeField]
             private float _acceleration = 5f;
             [SerializeField]
-            private float _speed = 6.0f;
+            private float _walkSpeed = 3.0f;
+            [SerializeField]
+            private float _runSpeed = 6.0f;//Always greater _walkSpeed
             [SerializeField]
             private float _jumpSpeed = 8.0f;
             [SerializeField]
             private float _gravity = 20.0f;
+            [SerializeField]
+            private float _rotateSpeed = 800f;
 
+            private Vector3 _rotateVectorTo = Vector3.zero;
+            private float _speed = 6.0f;
             private EventManager _eventManager;
             private bool canMove = true;
 
@@ -24,10 +30,23 @@ namespace EscapeFromMars
             protected Vector3 _moveDirection = Vector3.zero;
             protected Vector2 _controlVector;
 
-            public Vector3 MoveDirectionSpeed { get => new Vector3(_moveDirection.x * _speed, _moveDirection.y, 0); }
-            public float NormalizedSpeed { get => Mathf.Abs(MoveDirectionSpeed.x) / _speed; }
-            public bool IsGrounded { get => _characterController.isGrounded; }
-            public bool CanMove { get { return canMove; } set { canMove = value; if (!value) _moveDirection.x = 0; } }
+            public Vector3 MoveDirectionSpeed
+            {
+                get => new Vector3(_moveDirection.x * _speed, _moveDirection.y, 0);
+            }
+            public float NormalizedSpeed
+            {
+                get => Mathf.Abs(MoveDirectionSpeed.x) / _runSpeed;
+            }
+            public bool IsGrounded
+            {
+                get => _characterController.isGrounded;
+            }
+            public bool CanMove
+            {
+                get { return canMove; }
+                set { canMove = value; if (!value) _moveDirection.x = 0; }
+            }
 
             [Inject]
             private void Constructor(EventManager eventManager, CharacterController characterController)
@@ -44,7 +63,10 @@ namespace EscapeFromMars
             private void Update()
             {
                 if (CanMove)
+                {
                     Move();
+                    Rotate();
+                }
             }
 
             private void Move()
@@ -54,13 +76,18 @@ namespace EscapeFromMars
                 _characterController.Move(MoveDirectionSpeed * Time.deltaTime);
             }
 
+            private void Rotate()
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_rotateVectorTo), Time.deltaTime * _rotateSpeed);
+            }
+
             private void SetRotation()
             {
                 if (_controlVector.x < 0)
-                    transform.eulerAngles = new Vector3(0, 180, 0);
+                    _rotateVectorTo = new Vector3(0, 180, 0);
                 else
                   if (_controlVector.x > 0)
-                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    _rotateVectorTo = new Vector3(0, 0, 0);
             }
 
             private void Die(GameObject character)
@@ -70,11 +97,24 @@ namespace EscapeFromMars
                 canMove = false;
             }
 
-            public void SetMoveDirection(Vector3 controlVector)
+            private void SetMoveDirection(Vector3 directionVector)
             {
-                _controlVector = controlVector;
+                _controlVector = directionVector;
                 SetRotation();
             }
+
+            public void Walk(Vector3 directionVector)
+            {
+                _speed = _walkSpeed;
+                SetMoveDirection(directionVector);
+            }
+
+            public void Run(Vector3 directionVector)
+            {
+                _speed = _runSpeed;
+                SetMoveDirection(directionVector);
+            }
+
 
             public void Stop()
             {

@@ -7,7 +7,7 @@ namespace EscapeFromMars.Controls
     {
         public void PlayerMove(InputAction.CallbackContext context)
         {
-            SetMoveDirection(context.action.ReadValue<Vector2>());
+            Run(context.action.ReadValue<Vector2>());
         }
 
         public void PlayerJump(InputAction.CallbackContext context)

@@ -51,9 +51,13 @@ namespace EscapeFromMars.AI
             _currentState = AIEnemyState.PATROL;
             while (_currentState == AIEnemyState.PATROL)
             {
-                MoveRight();
+                WalkRight();
                 yield return _pausePatrol;
-                MoveLeft();
+                _personMover.Stop();
+                yield return _pausePatrol;
+                WalkLeft();
+                yield return _pausePatrol;
+                _personMover.Stop();
                 yield return _pausePatrol;
             }
         }
@@ -68,20 +72,26 @@ namespace EscapeFromMars.AI
             yield return null;
         }
 
-        private void MoveRight()
+        private void WalkRight()
         {
-            _personMover.SetMoveDirection(Vector3.right);
+            _personMover.Walk(Vector3.right);
         }
 
-        private void MoveLeft()
+        private void WalkLeft()
         {
-            _personMover.SetMoveDirection(Vector3.left);
+            _personMover.Walk(Vector3.left);
+        }
+
+        private void SetChaseState()
+        {
+            StopAllCoroutines();
+            _currentState = AIEnemyState.CHASE;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerMover>() != null)
-                _currentState = AIEnemyState.CHASE;
+                SetChaseState();
         }
 
         private void OnTriggerExit(Collider other)

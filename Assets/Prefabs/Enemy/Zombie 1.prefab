@@ -249,10 +249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf40a91b17577354693bff5a1cc2aa06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 5
-  Speed: 3
-  JumpSpeed: 8
-  Gravity: 20
+  _acceleration: 5
+  _walkSpeed: 1
+  _runSpeed: 6
+  _jumpSpeed: 8
+  _gravity: 20
+  _rotateSpeed: 800
 --- !u!114 &4179837672234471976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53fedf32db72ae547a2d3869bdae7e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timePatrol: 2
+  _timePatrol: 4
 --- !u!114 &4179837672234471980
 MonoBehaviour:
   m_ObjectHideFlags: 0

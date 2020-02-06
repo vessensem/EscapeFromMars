@@ -2563,7 +2563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667ec6cbb9362f4428da531375b07efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  _damage: 1
 --- !u!82 &1290446503
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2910,10 +2910,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbb7552cd89d164a8904d6a4c6eca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 10
-  Speed: 6
-  JumpSpeed: 0
-  Gravity: 20
+  _acceleration: 5
+  _walkSpeed: 3
+  _runSpeed: 6
+  _jumpSpeed: 8
+  _gravity: 20
+  _rotateSpeed: 800
 --- !u!114 &7986799096559999258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2926,7 +2928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a3232b8c5f6e646b0583641437d509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxAttackSpeed: 0.2
 --- !u!114 &7033273450840106532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3003,7 +3004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667ec6cbb9362f4428da531375b07efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  _damage: 1
 --- !u!82 &1935275844
 AudioSource:
   m_ObjectHideFlags: 0
