@@ -19,10 +19,10 @@ namespace EscapeFromMars.Damage
 
         private void OnTriggerEnter(Collider other)
         {
-            print("Damage");
             var damagable = other.gameObject.GetComponent<IDamagable>();
             if (damagable != null)
             {
+                print("Damage");
                 damagable.ApplyDamage(_damage);
                 _audioSource.Play();
             }

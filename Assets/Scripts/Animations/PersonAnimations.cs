@@ -19,7 +19,7 @@ namespace EscapeFromMars.Animations
         }
 
         [Inject]
-        void Constructor(EventManager eventManager, Animator playerAnimator, PersonMover playerMover)
+        private void Constructor(EventManager eventManager, Animator playerAnimator, PersonMover playerMover)
         {
             _eventManager = eventManager;
             _animator = playerAnimator;
@@ -43,13 +43,13 @@ namespace EscapeFromMars.Animations
                 _animator.SetTrigger("GetDamage");
         }
 
-        void Die(GameObject person)
+        private void Die(GameObject person)
         {
             if (person.Equals(gameObject))
                 _animator.SetTrigger("Die");
         }
 
-        bool CanAttack()
+        private bool CanAttack()
         {
             if (_personMover.IsGrounded && _canDoAnimation)
                 return true;
