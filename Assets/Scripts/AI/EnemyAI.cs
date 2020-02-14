@@ -12,10 +12,18 @@ namespace EscapeFromMars.AI
     {
         [SerializeField]
         private float _timePatrol = 2f;//Time for patrol to one point
+        [SerializeField]
+        private float _chaseMaxDistance = 4f;//Max distance to target for chase state
+        [SerializeField]
+        private float _attackRange = 0.5f;
+        [SerializeField]
+        private float _attackRate = 1f;
 
+        private float _attackRateTimer;
         private EventManager _eventManager;
         private EnemyAnimations _enemyAnimations;
         private PersonMover _personMover;
+        private Transform _target;
 
         private AIEnemyState _currentState = AIEnemyState.IDLE;
 
@@ -36,14 +44,14 @@ namespace EscapeFromMars.AI
 
         private void Start()
         {
-            StartCoroutine(IdleState());
+            SetState(AIEnemyState.IDLE);
         }
 
         private IEnumerator IdleState()
         {
             _personMover.Stop();
             yield return null;
-            StartCoroutine(PatrolState());
+            SetState(AIEnemyState.PATROL);
         }
 
         private IEnumerator PatrolState()
@@ -64,12 +72,50 @@ namespace EscapeFromMars.AI
 
         private IEnumerator ChaseState()
         {
-            yield return null;
+            _currentState = AIEnemyState.CHASE;
+            while (_currentState == AIEnemyState.CHASE)
+            {
+                if (DistanceToTarget() < _chaseMaxDistance)
+                    RunToTarget();
+                else
+                    SetState(AIEnemyState.IDLE);
+
+                if (DistanceToTarget() <= _attackRange)
+                    SetState(AIEnemyState.ATTACK);
+
+                yield return null;
+            }
         }
 
         private IEnumerator AttackState()
         {
-            yield return null;
+            _currentState = AIEnemyState.ATTACK;
+            _attackRateTimer = _attackRate;
+            _personMover.Stop();
+
+            while (_currentState == AIEnemyState.ATTACK)
+            {
+                if (DistanceToTarget() > _attackRange)
+                    SetState(AIEnemyState.IDLE);
+
+                _attackRateTimer += Time.deltaTime;
+                if (_attackRateTimer >= _attackRate)
+                {
+                    _enemyAnimations.Attack();
+                    _attackRateTimer = 0;
+                }
+                yield return null;
+            }
+        }
+
+        private float DistanceToTarget()
+        {
+            return Vector2.Distance(_target.position, transform.position);
+        }
+
+        private void RunToTarget()
+        {
+            _personMover.Run((_target.position - transform.position).normalized);
         }
 
         private void WalkRight()
@@ -82,22 +128,36 @@ namespace EscapeFromMars.AI
             _personMover.Walk(Vector3.left);
         }
 
-        private void SetChaseState()
+        private void SetState(AIEnemyState aiEnemyState)
         {
             StopAllCoroutines();
-            _currentState = AIEnemyState.CHASE;
+            switch (aiEnemyState)
+            {
+                case AIEnemyState.IDLE:
+                    StartCoroutine(IdleState());
+                    break;
+                case AIEnemyState.PATROL:
+                    StartCoroutine(PatrolState());
+                    break;
+                case AIEnemyState.CHASE:
+                    StartCoroutine(ChaseState());
+                    break;
+                case AIEnemyState.ATTACK:
+                    StartCoroutine(AttackState());
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerMover>() != null)
-                SetChaseState();
+            {
+                _target = other.transform;
+                SetState(AIEnemyState.CHASE);
+            }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.GetComponent<PlayerMover>() != null)
-                _currentState = AIEnemyState.IDLE;
-        }
     }
 }
